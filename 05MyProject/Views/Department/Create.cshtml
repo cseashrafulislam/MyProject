@@ -1,0 +1,56 @@
+﻿@model DepartmentViewModel
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error:</strong> @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Department Register Form</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <form asp-action="Create" method="post" class="bg-light p-4 rounded shadow">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="Name" class="form-label"></label>
+                        <input asp-for="Name" class="form-control" placeholder="Enter Name">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Budget" class="form-label"></label>
+                        <input asp-for="Budget" class="form-control" placeholder="Enter Budget">
+                        <span asp-validation-for="Budget" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="ManagerId" class="form-label"></label>
+                        <select asp-for="ManagerId" asp-items="@(new SelectList(Model.Managers, "Id", "Name"))" class="form-select searchable-dropdown">
+                            <option value="0">Select a Manager</option>
+                        </select>
+                        <span asp-validation-for="ManagerId" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="d-flex justify-content-center gap-3 mt-4">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-danger">Clear</button>
+                    <a asp-action="List" class="btn btn-success">View List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.searchable-dropdown').select2({
+            placeholder: "Select a Manager",
+            allowClear: true,
+            width: '100%' // Ensure the dropdown width matches the parent container
+        });
+    });
+</script>

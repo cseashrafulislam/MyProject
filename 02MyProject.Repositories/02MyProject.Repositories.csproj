@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="10.5.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\02MyProject.Repository.Abstruction\02MyProject.Repository.Abstruction.csproj" />
+    <ProjectReference Include="..\03MyProject.Database\03MyProject.Database.csproj" />
+    <ProjectReference Include="..\01MyProject.Domain\01MyProject.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

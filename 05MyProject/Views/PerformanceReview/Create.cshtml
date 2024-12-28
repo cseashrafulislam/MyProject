@@ -1,0 +1,91 @@
+﻿@* @using MyProject.Domain
+@model PerformanceReviewViewModel
+
+<div class="container mt-4">
+	<h2 class="text-center mb-4">Department Register Form</h2>
+
+	<div class="row justify-content-center">
+		<div class="col-lg-8 col-md-10">
+			<form method="post" class="bg-light p-4 rounded shadow">
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="EmployeeId" class="form-label">Employee</label>
+						<select class="form-select" id="EmployeeId" name="EmployeeId">
+							<option selected>Select a Employee</option>
+							@foreach (var item in Model.Employees)
+							{
+								<option value="@item.Id">@item.Name</option>
+							}
+						</select>
+					</div>
+					<div class="col-md-6">
+						<label for="ReviewDate" class="form-label">Review Date</label>
+						<input type="date" class="form-control" id="ReviewDate" name="ReviewDate" placeholder="Enter Review Date">
+					</div>
+				</div>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="ReviewScore" class="form-label">Review Score</label>
+						<input type="text" class="form-control" id="ReviewScore" name="ReviewScore" placeholder="Enter Review Score">
+					</div>
+					<div class="col-md-6">
+						<label for="ReviewNotes" class="form-label">ReviewNotes</label>
+						<input type="text" class="form-control" id="ReviewNotes" name="ReviewNotes" placeholder="Enter Review Note">
+					</div>
+				</div>
+
+				<div class="d-flex justify-content-center gap-3 mt-4">
+					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="reset" class="btn btn-danger">Clear</button>
+					<a href="@Url.Action("List", "PerformanceReview")" class="btn btn-success">View List</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+ *@
+
+@model PerformanceReviewViewModel
+
+<div class="container mt-4">
+	<h2 class="text-center mb-4">Performance Review Form</h2>
+
+	<div class="row justify-content-center">
+		<div class="col-lg-8 col-md-10">
+			<form asp-action="Create" method="post" class="bg-light p-4 rounded shadow">
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label asp-for="EmployeeId" class="form-label"></label>
+						<select asp-for="EmployeeId" asp-items="@(new SelectList(Model.Employees, "Id", "Name"))" class="form-select">
+							<option value="">Select an Employee</option>
+						</select>
+						<span asp-validation-for="EmployeeId" class="text-danger"></span>
+					</div>
+					<div class="col-md-6">
+						<label asp-for="ReviewDate" class="form-label"></label>
+						<input type="date" asp-for="ReviewDate" class="form-control" placeholder="Enter Review Date">
+						<span asp-validation-for="ReviewDate" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label asp-for="ReviewScore" class="form-label"></label>
+						<input asp-for="ReviewScore" class="form-control" placeholder="Enter Review Score">
+						<span asp-validation-for="ReviewScore" class="text-danger"></span>
+					</div>
+					<div class="col-md-6">
+						<label asp-for="ReviewNotes" class="form-label"></label>
+						<input asp-for="ReviewNotes" class="form-control" placeholder="Enter Review Notes">
+					</div>
+				</div>
+
+				<div class="d-flex justify-content-center gap-3 mt-4">
+					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="reset" class="btn btn-danger">Clear</button>
+					<a asp-action="List" class="btn btn-success">View List</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+

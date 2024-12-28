@@ -1,0 +1,46 @@
+﻿@model PerformanceReviewViewModel
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Performance Review</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="form-group mb-3">
+                            <label for="DepartmentId" class="form-label">Employee</label>
+                            <select class="form-control" asp-for="EmployeeId">
+                                <option value="">-- Select Employee --</option>
+                                @if (Model.Employees != null)
+                                {
+                                    @foreach (var employee in Model.Employees)
+                                    {
+                                        <option value="@employee.Id">@employee.Name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="ReviewDate" class="form-label">Review Date</label>
+                            <input type="date" class="form-control" id="ReviewDate" name="ReviewDate" value="@Model.ReviewDate.ToString("yyyy-MM-dd")">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="ReviewScore" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="ReviewScore" name="ReviewScore" placeholder="Enter Review Score" value="@Model.ReviewScore">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="ReviewNotes" class="form-label">Review Notes</label>
+                            <input type="text" class="form-control" id="ReviewNotes" name="ReviewNotes" value="@Model.ReviewNotes">
+                        </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                            <a href="@Url.Action("List", "PerformanceReview")" class="btn btn-secondary">Back to List</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

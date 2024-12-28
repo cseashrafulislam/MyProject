@@ -1,0 +1,54 @@
+﻿@using MyProject.Domain
+@model Employee
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Employee Details</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-sm-4">Name</dt>
+                <dd class="col-sm-8">@Model.Name</dd>
+
+                <dt class="col-sm-4">Email</dt>
+                <dd class="col-sm-8">@Model.Email</dd>
+
+                <dt class="col-sm-4">Phone Number</dt>
+                <dd class="col-sm-8">@Model.PhoneNumber</dd>
+
+                <dt class="col-sm-4">Gender</dt>
+                <dd class="col-sm-8">@Model.Gender</dd>
+
+                <dt class="col-sm-4">Joining Date</dt>
+                <dd class="col-sm-8">@String.Format("{0:dd-MMM-yyyy}", Model.JoiningDate)</dd>
+
+                <dt class="col-sm-4">Department</dt>
+                <dd class="col-sm-8">@Model.Department?.Name</dd>
+
+                <dt class="col-sm-4">Position</dt>
+                <dd class="col-sm-8">@Model.Position</dd>
+
+                <dt class="col-sm-4">Salary</dt>
+                <dd class="col-sm-8">@Model.Salary</dd>
+                <dt class="col-sm-4">Status</dt>
+                @if(Model.IsActive)
+				{
+					<dd class="col-sm-8">Active</dd>
+				}
+				else
+				{
+					<dd class="col-sm-8">Inactive</dd>
+				}
+            </dl>
+        </div>
+        <div class="card-footer text-end">
+            <a class="btn btn-primary me-2" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+            <a class="btn btn-secondary" asp-action="List">Back to List</a>
+        </div>
+    </div>
+</div>
